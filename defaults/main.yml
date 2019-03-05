@@ -1,0 +1,3 @@
+---
+a2dp_sink_enable_switch_on_connect: true
+a2dp_sink_adapter_name: A2DP sink
