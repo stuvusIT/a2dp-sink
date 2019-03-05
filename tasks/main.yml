@@ -1,0 +1,59 @@
+---
+- name: Install dependencies
+  apt:
+    name:
+      - pulseaudio
+      - pulseaudio-module-bluetooth
+      - python-dbus
+
+- name: Create Pulse Audio service
+  copy:
+    src: pulseaudio.service
+    dest: /etc/systemd/system/pulseaudio.service
+  notify: Restart Pulse Audio
+
+- name: Give Pulse Audio permissions to use Bluetooth
+  copy:
+    src: pulseaudio-bluetooth.conf
+    dest: /etc/dbus-1/system.d/pulseaudio-bluetooth.conf
+  notify: Restart Pulse Audio
+
+- name: Add root to the required groups
+  user:
+    name: root
+    append: true
+    groups:
+      - pulse-access
+      - audio
+  notify: Restart Pulse Audio
+
+- name: Load module bluetooth-policy
+  lineinfile:
+    dest: /etc/pulse/system.pa
+    line: load-module module-bluetooth-policy
+  notify: Restart Pulse Audio
+
+- name: Load module bluetooth-discover
+  lineinfile:
+    dest: /etc/pulse/system.pa
+    line: load-module module-bluetooth-discover
+  notify: Restart Pulse Audio
+
+- name: Load module bluetooth-switch-on-connect
+  lineinfile:
+    dest: /etc/pulse/system.pa
+    line: load-module module-switch-on-connect
+  when: a2dp_sink_enable_switch_on_connect
+  notify: Restart Pulse Audio
+
+- name: Create Btrust service
+  copy:
+    src: btrust.service
+    dest: /etc/systemd/system/btrust.service
+  notify: Restart Btrust service
+
+- name: Create Btrust config
+  template:
+    src: btrust.toml.j2
+    dest: /etc/btrust.toml
+  notify: Restart Btrust service

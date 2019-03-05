@@ -1,0 +1,14 @@
+---
+- name: Restart Pulse Audio
+  service:
+    name: pulseaudio
+    state: restarted
+    enabled: true
+    daemon_reload: true
+
+- name: Restart Btrust service
+  service:
+    name: btrust
+    state: restarted
+    enabled: true
+    daemon_reload: true
