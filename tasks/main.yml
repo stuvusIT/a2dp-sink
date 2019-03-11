@@ -18,11 +18,11 @@
     dest: /etc/dbus-1/system.d/pulseaudio-bluetooth.conf
   notify: Restart Pulse Audio
 
-- name: Add root to the required groups
+- name: Create a2dp-sink user
   user:
-    name: root
-    append: true
+    name: a2dp-sink
     groups:
+      - bluetooth
       - pulse-access
       - audio
   notify: Restart Pulse Audio

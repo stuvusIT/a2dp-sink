@@ -1,11 +1,12 @@
 # {{ ansible_managed }}
-[Unit]  
+[Unit]
 Description=Pulse Audio
 After=bluetooth.service
 Wants=bluetooth.service
 
 [Service]
-ExecStart=/usr/bin/pulseaudio --system --disallow-exit --disable-shm
+ExecStart=/usr/bin/pulseaudio --disallow-exit --disable-shm
+User=a2dp-sink
 Restart=always
 RestartSec=10
 
