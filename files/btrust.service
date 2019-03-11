@@ -7,6 +7,7 @@ Wants=bluetooth.service
 [Service]
 ExecStart=/usr/local/bin/btrust
 WorkingDirectory=/etc
+User=a2dp-sink
 Restart=always
 RestartSec=10
 
