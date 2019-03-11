@@ -27,19 +27,16 @@
       - audio
   notify: Restart PulseAudio
 
-- name: Load module bluetooth-policy
+- name: Load required modules
   lineinfile:
     dest: /etc/pulse/system.pa
     line: load-module module-bluetooth-policy
   notify: Restart PulseAudio
+  loop:
+    - module-bluetooth-policy
+    - module-bluetooth-discover
 
-- name: Load module bluetooth-discover
-  lineinfile:
-    dest: /etc/pulse/system.pa
-    line: load-module module-bluetooth-discover
-  notify: Restart PulseAudio
-
-- name: Load module bluetooth-switch-on-connect
+- name: Load module-switch-on-connect
   lineinfile:
     dest: /etc/pulse/system.pa
     line: load-module module-switch-on-connect
