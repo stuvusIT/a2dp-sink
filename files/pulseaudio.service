@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 [Unit]
-Description=Pulse Audio
+Description=PulseAudio
 After=bluetooth.service
 Wants=bluetooth.service
 
