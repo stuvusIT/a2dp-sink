@@ -1,0 +1,41 @@
+---
+# This is included in deploy.yml only if {{ a2dp_sink_btrust_binary_url }} is not defined
+
+- name: Install toolchain
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+- name: Download Btrust archive
+  get_url:
+    url: "{{ a2dp_sink_btrust_archive_url }}"
+    dest: "{{ global_cache_dir }}/btrust-{{ a2dp_sink_btrust_version }}.tar.gz"
+    checksum: "{{ a2dp_sink_btrust_archive_checksum }}"
+  become: false
+  delegate_to: localhost
+
+- name: Clear unarchive target directory
+  file:
+    path: /tmp/btrust-{{ a2dp_sink_btrust_version }}
+    state: absent
+
+- name: Unpack Btrust archive
+  unarchive:
+    src: "{{ global_cache_dir }}/btrust-{{ a2dp_sink_btrust_version }}.tar.gz"
+    dest: /tmp
+
+- name: Compile Btrust
+  shell: $HOME/.cargo/bin/cargo build --release
+  args:
+    chdir: /tmp/btrust-{{ a2dp_sink_btrust_version }}
+
+- name: Create deployment target directory
+  file:
+    path: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin
+    state: directory
+
+- name: Deploy Btrust executable
+  copy:
+    remote_src: true
+    src: /tmp/btrust-{{ a2dp_sink_btrust_version }}/target/release/btrust
+    dest: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin/btrust
+    mode: 0755
+  notify: Restart Btrust service

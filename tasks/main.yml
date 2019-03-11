@@ -43,6 +43,8 @@
   when: a2dp_sink_enable_switch_on_connect
   notify: Restart PulseAudio
 
+- include_tasks: install_btrust.yml
+
 - name: Create Btrust service
   copy:
     src: btrust.service

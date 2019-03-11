@@ -1,0 +1,11 @@
+---
+- name: Download precompiled binary for btrust
+  get_url:
+    url: "{{ a2dp_sink_btrust_binary_url }}"
+    dest: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin/btrust
+    checksum: "{{ a2dp_sink_btrust_binary_checksum }}"
+    mode: 0755
+  when: a2dp_sink_btrust_binary_url is defined
+
+- include_tasks: build_btrust.yml
+  when: a2dp_sink_btrust_binary_url is not defined
