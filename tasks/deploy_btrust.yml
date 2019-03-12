@@ -1,4 +1,9 @@
 ---
+- name: Create get_url target directory
+  file:
+    path: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin
+    state: directory
+
 - name: Download precompiled binary for btrust
   get_url:
     url: "{{ a2dp_sink_btrust_binary_url }}"
