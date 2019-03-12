@@ -1,8 +1,7 @@
 # {{ ansible_managed }}
 [Unit]
 Description=PulseAudio
-After=bluetooth.service
-Wants=bluetooth.service
+After=bluetooth.target sound.target
 
 [Service]
 ExecStart=/usr/bin/pulseaudio --disallow-exit --disable-shm

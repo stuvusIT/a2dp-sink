@@ -1,6 +1,6 @@
 ---
 a2dp_sink_btrust_version: 0.1.0
 a2dp_sink_btrust_archive_url: https://github.com/haslersn/btrust/archive/{{ a2dp_sink_btrust_version }}.tar.gz
-a2dp_sink_btrust_archive_checksum: "sha256:960b5dcc90714df217e4c68fdfb1f874f36418655599233310c1a5d3e1837009"
-a2dp_sink_enable_switch_on_connect: true
+a2dp_sink_btrust_archive_checksum: sha256:960b5dcc90714df217e4c68fdfb1f874f36418655599233310c1a5d3e1837009
+a2dp_sink_enable_switch_on_connect: True
 a2dp_sink_adapter_name: A2DP sink
