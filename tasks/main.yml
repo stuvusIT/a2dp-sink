@@ -4,7 +4,6 @@
     name:
       - pulseaudio
       - pulseaudio-module-bluetooth
-      - python-dbus
 
 - name: Create PulseAudio service
   copy:
