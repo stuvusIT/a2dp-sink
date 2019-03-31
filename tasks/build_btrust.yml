@@ -1,6 +1,11 @@
 ---
 # This is included in deploy.yml only if {{ a2dp_sink_btrust_binary_url }} is not defined
 
+- name: Install build dependenices
+  apt:
+    name:
+      - libdbus-1-dev
+
 - name: Install toolchain
   shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
 
