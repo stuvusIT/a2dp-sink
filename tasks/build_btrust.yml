@@ -11,9 +11,9 @@
 
 - name: Download Btrust archive
   get_url:
-    url: "{{ a2dp_sink_btrust_archive_url }}"
+    url: "{{ a2dp_sink_btrust_archive_url | default('https://github.com/' + a2dp_sink_btrust_github_repo + '/archive/' + a2dp_sink_btrust_version + '.tar.gz') }}"
     dest: "{{ global_cache_dir }}/btrust-{{ a2dp_sink_btrust_version }}.tar.gz"
-    checksum: "{{ a2dp_sink_btrust_archive_checksum }}"
+    checksum: "{{ a2dp_sink_btrust_checksum }}"
   become: false
   delegate_to: localhost
 
