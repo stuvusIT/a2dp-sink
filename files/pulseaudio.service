@@ -4,8 +4,8 @@ Description=PulseAudio
 After=bluetooth.target sound.target
 
 [Service]
-ExecStart=/usr/bin/pulseaudio --disallow-exit --disable-shm
-User=a2dp-sink
+ExecStart=/usr/bin/pulseaudio --start --disallow-exit --disable-shm
+User={{ a2dp_sink_user }}
 Restart=always
 RestartSec=10
 
