@@ -2,20 +2,12 @@
 - name: Install dependencies
   apt:
     name:
-      - pulseaudio
       - pulseaudio-module-bluetooth
-
-- name: Create PulseAudio service
-  copy:
-    src: pulseaudio.service
-    dest: /etc/systemd/system/pulseaudio.service
-  notify: Restart PulseAudio
 
 - name: Give PulseAudio permissions to use Bluetooth
   copy:
     src: pulseaudio-bluetooth.conf
     dest: /etc/dbus-1/system.d/pulseaudio-bluetooth.conf
-  notify: Restart PulseAudio
 
 - name: Create a2dp-sink user
   user:
@@ -25,13 +17,11 @@
       - pulse-access
       - audio
     append: True
-  notify: Restart PulseAudio
 
 - name: Load required modules
   lineinfile:
     dest: /etc/pulse/system.pa
     line: load-module module-bluetooth-policy
-  notify: Restart PulseAudio
   loop:
     - module-bluetooth-policy
     - module-bluetooth-discover
@@ -41,7 +31,6 @@
     dest: /etc/pulse/system.pa
     line: load-module module-switch-on-connect
   when: a2dp_sink_enable_switch_on_connect
-  notify: Restart PulseAudio
 
 - include_tasks: install_btrust.yml
 
