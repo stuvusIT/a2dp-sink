@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: haslersn
+  description: Headless Bluetooth audio sink (A2DP)
+  company: stuvus (https://stuvus.uni-stuttgart.de)
+
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Debian
+    - name: Ubuntu
+
+  galaxy_tags:
+    - headless
+    - Bluetooth
+    - audio
+    - sink
+    - a2dp
+
+dependencies: []
