@@ -1,7 +1,10 @@
 ---
+- name: Reload systemd configuration
+  service:
+    daemon_reload: True
+
 - name: Restart Btrust service
   service:
     name: btrust
     state: restarted
     enabled: true
-    daemon_reload: true
