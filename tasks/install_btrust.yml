@@ -1,0 +1,15 @@
+---
+- name: Check if the desired btrust version exists
+  stat:
+    path: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin/btrust
+  register: a2dp_sink_btrust_executable_stat
+
+- include_tasks: deploy_btrust.yml
+  when: not a2dp_sink_btrust_executable_stat.stat.exists
+
+- name: Install btrust
+  file:
+    path: /usr/local/bin/btrust
+    state: link
+    src: /opt/btrust-{{ a2dp_sink_btrust_version }}/bin/btrust
+  notify: Restart Btrust service

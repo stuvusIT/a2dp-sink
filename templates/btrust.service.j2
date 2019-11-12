@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Btrust
+After=bluetooth.service
+Wants=bluetooth.service
+
+[Service]
+ExecStart=/usr/local/bin/btrust
+WorkingDirectory=/etc
+User={{ a2dp_sink_user }}
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
