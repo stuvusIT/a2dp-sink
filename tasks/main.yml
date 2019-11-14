@@ -21,7 +21,7 @@
 - name: Load required modules
   lineinfile:
     dest: /etc/pulse/system.pa
-    line: load-module module-bluetooth-policy
+    line: load-module {{ item }}
   loop:
     - module-bluetooth-policy
     - module-bluetooth-discover
