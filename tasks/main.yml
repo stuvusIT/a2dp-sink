@@ -47,3 +47,11 @@
   notify:
     - Reload systemd configuration
     - Restart Btrust service
+
+- meta: flush_handlers
+
+- name: Enable Btrust service
+  service:
+    name: btrust
+    enabled: True
+    state: started
