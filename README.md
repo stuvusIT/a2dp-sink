@@ -47,7 +47,7 @@ is considered.
   The downloaded archive must contain a folder named `btrust-{{ btrust_version }}` which
   contains in turn the source that can be compiled with `cargo build`.
   The compilation yields a binary named `btrust` which is then installed.
-* `btrust_github_repo`: 
+* `btrust_github_repo`:
   Short form for
   `btrust_archive_url: https://github.com/{{ btrust_github_repo }}/archive/{{ btrust_version }}.tar.gz`.
 
