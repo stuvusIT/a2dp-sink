@@ -5,3 +5,4 @@ a2dp_sink_btrust_checksum: sha256:960b5dcc90714df217e4c68fdfb1f874f3641865559923
 a2dp_sink_user: a2dp-sink
 a2dp_sink_enable_switch_on_connect: True
 a2dp_sink_adapter_name: A2DP sink
+a2dp_sink_disable_sap_server: True
