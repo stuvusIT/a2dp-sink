@@ -28,6 +28,7 @@ To do so, just change the [btrust source specification](#btrust-source-specifica
 | a2dp_sink_user                     | a2dp-sink                                                               | The user that runs any service installed by this role.   |
 | a2dp_sink_enable_switch_on_connect | True                                                                    | Whether to load the PulseAudio module switch-on-connect. |
 | a2dp_sink_a2dp_sink_adapter_name   | A2DP sink                                                               | Name of this Bluetooth device.                           |
+| a2dp_sink_disable_sap_server       | `True`                                                                  | Whether to disable the sap server plugin of bluetoothd   |
 
 ### Source Specification
 
